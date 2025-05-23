@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Московский Политех - все страницы</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-image: url(https://i.pinimg.com/736x/c9/34/83/c934831c757cf94ebabacecbe5c58704.jpg);
+      color: #000000;
+    }
+
+    header {
+      background-color: #7b0086;
+      color: white;
+      padding: 1em;
+      text-align: center;
+    }
+
+    nav {
+      background-color: #7b0086;
+      padding: 0.5em;
+      text-align: center;
+    }
+
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    main {
+      padding: 2em;
+      margin-bottom: 60px; /* Чтобы контент не скрывался под фиксированным футером */
+    }
+
+    footer {
+      background-color: #7b0086;
+      color: white;
+      text-align: center;
+      padding: 1em;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+
+    /* Стили для скрытия/показа страниц */
+    .page {
+      display: none;
+    }
+    .page.active {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <!-- Главная навигация -->
+  <header>
+    <h1 id="page-title">Добро пожаловать в Московский Политех</h1>
+  </header>
+  <nav id="main-nav">
+    <a href="#" onclick="showPage('home')">Главная</a>
+    <a href="#" onclick="showPage('museum')">О музее</a>
+    <a href="#" onclick="showPage('incident-plan')">План реагирования</a>
+  </nav>
+
+  <!-- Страницы -->
+  <main>
+    <!-- Главная страница -->
+    <div id="home" class="page active">
+      <p>На этом сайте вы найдете информацию о музее Московского Политеха и план реагирования на инциденты в корпоративной сети.</p>
+    </div>
+
+    <!-- Страница музея -->
+    <div id="museum" class="page">
+      <h2>О музее</h2>
+      <p>Музей Московского Политеха — это центр исторической и научной памяти университета. Здесь представлены экспозиции, посвящённые развитию инженерного образования, научным достижениям студентов и преподавателей.</p>
+      <h3>Экспозиции</h3>
+      <ul>
+        <li>История университета</li>
+        <li>Развитие технологий</li>
+        <li>Инновации студентов</li>
+      </ul>
+      <h3>Контакты</h3>
+      <p>Адрес: Москва, Большая Семёновская улица, д. 38</p>
+      <p>Email: museum@mstuca.ru</p>
+    </div>
+
+    <!-- Страница плана реагирования -->
+    <div id="incident-plan" class="page">
+      <h2>Введение</h2>
+      <p>План реагирования на инциденты в корпоративной сети необходим для обеспечения информационной безопасности и минимизации последствий атак.</p>
+      <h2>Этапы реагирования</h2>
+      <ol>
+        <li>Обнаружение инцидента</li>
+        <li>Анализ и классификация</li>
+        <li>Изоляция и устранение угрозы</li>
+        <li>Восстановление работы систем</li>
+        <li>Отчетность и улучшения</li>
+      </ol>
+      <h2>Типовые угрозы</h2>
+      <ul>
+        <li>Фишинг</li>
+        <li>Вредоносное ПО</li>
+        <li>Несанкционированный доступ</li>
+      </ul>
+      <h2>Рекомендации</h2>
+      <p>Регулярно обновляйте ПО, обучайте сотрудников и используйте антивирусные решения.</p>
+    </div>
+  </main>
+
+  <footer>
+    <span id="footer-text">&copy; 2025 Московский Политех</span>
+  </footer>
+
+  <script>
+    // Функция для переключения между страницами
+    function showPage(pageId) {
+      // Скрыть все страницы
+      document.querySelectorAll('.page').forEach(page => {
+        page.classList.remove('active');
+      });
+      
+      // Показать выбранную страницу
+      document.getElementById(pageId).classList.add('active');
+      
+      // Обновить заголовок страницы
+      const titles = {
+        'home': 'Добро пожаловать в Московский Политех',
+        'museum': 'Музей Московского Политеха',
+        'incident-plan': 'План реагирования на инциденты безопасности'
+      };
+      document.getElementById('page-title').textContent = titles[pageId];
+      
+      // Обновить текст в футере
+      const footers = {
+        'home': '&copy; 2025 Московский Политех',
+        'museum': '&copy; 2025 Музей Московского Политеха',
+        'incident-plan': '&copy; 2025Безопасность корпоративной сети'
+      };
+      document.getElementById('footer-text').innerHTML = footers[pageId] || footers['home'];
+    }
+  </script>
+</body>
+</html>
