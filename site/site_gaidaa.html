@@ -2,61 +2,470 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Московский Политех - все страницы</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    body {
-      font-family: Arial, sans-serif;
+    :root {
+      --primary-color: #7b0086;
+      --primary-dark: #5a0063;
+      --primary-light: #9c33a6;
+      --secondary-color: #f8f9fa;
+      --accent-color: #ffc107;
+      --text-dark: #2d3748;
+      --text-light: #ffffff;
+      --gradient: linear-gradient(135deg, #7b0086 0%, #5a0063 100%);
+      --card-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      --hover-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+      --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    
+    * {
       margin: 0;
       padding: 0;
-      background-image: url(https://i.pinimg.com/736x/c9/34/83/c934831c757cf94ebabacecbe5c58704.jpg);
-      color: #000000;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+      color: var(--text-dark);
+      line-height: 1.7;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(circle at 10% 20%, rgba(123, 0, 134, 0.05) 0%, transparent 20%),
+        radial-gradient(circle at 90% 80%, rgba(90, 0, 99, 0.05) 0%, transparent 20%);
+      z-index: -1;
     }
 
     header {
-      background-color: #7b0086;
-      color: white;
-      padding: 1em;
+      background: var(--gradient);
+      color: var(--text-light);
+      padding: 2em 1em;
       text-align: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    header::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,70 Q50,90 100,70 L100,100 L0,100 Z" fill="rgba(255,255,255,0.1)"/></svg>');
+      background-size: 100% 100%;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+    }
+    
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+      position: relative;
+      z-index: 1;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+    
+    .header-subtitle {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      position: relative;
+      z-index: 1;
+    }
+    
+    h2 {
+      color: var(--primary-color);
+      margin: 1.8rem 0 1.2rem;
+      padding-bottom: 0.7rem;
+      border-bottom: 2px solid var(--primary-light);
+      position: relative;
+    }
+    
+    h2::after {
+      content: "";
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 60px;
+      height: 2px;
+      background: var(--accent-color);
+    }
+    
+    h3 {
+      color: var(--primary-dark);
+      margin: 1.5rem 0 1rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    h3 i {
+      color: var(--primary-color);
     }
 
     nav {
-      background-color: #7b0086;
-      padding: 0.5em;
+      background-color: var(--primary-dark);
+      padding: 1em;
       text-align: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
     }
 
     nav a {
-      color: white;
-      margin: 0 15px;
+      color: var(--text-light);
       text-decoration: none;
-      font-weight: bold;
+      font-weight: 500;
+      padding: 12px 24px;
+      border-radius: 50px;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
-
+    
+    nav a::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.7s;
+    }
+    
+    nav a:hover::before {
+      left: 100%;
+    }
+    
     nav a:hover {
-      text-decoration: underline;
+      background-color: rgba(255, 255, 255, 0.15);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    nav a.active {
+      background-color: var(--primary-light);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     }
 
     main {
-      padding: 2em;
-      margin-bottom: 60px; /* Чтобы контент не скрывался под фиксированным футером */
+      padding: 2.5em 1.5em;
+      margin-bottom: 80px;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .page {
+      display: none;
+      animation: fadeIn 0.6s ease;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .page.active {
+      display: block;
+    }
+    
+    .card {
+      background-color: white;
+      border-radius: 16px;
+      box-shadow: var(--card-shadow);
+      padding: 2rem;
+      margin-bottom: 2rem;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 5px;
+      height: 100%;
+      background: var(--gradient);
+    }
+    
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--hover-shadow);
+    }
+    
+    .welcome-section {
+      text-align: center;
+      padding: 3rem 2rem;
+    }
+    
+    .welcome-icon {
+      font-size: 4.5rem;
+      color: var(--primary-color);
+      margin-bottom: 1.5rem;
+      display: inline-block;
+      animation: float 3s ease-in-out infinite;
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    
+    .welcome-text {
+      font-size: 1.3rem;
+      max-width: 800px;
+      margin: 0 auto;
+      color: var(--text-dark);
+    }
+    
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.8rem;
+      margin-top: 2rem;
+    }
+    
+    .feature-card {
+      background: white;
+      border-radius: 12px;
+      padding: 1.8rem;
+      text-align: center;
+      box-shadow: var(--card-shadow);
+      transition: var(--transition);
+      cursor: pointer;
+      border-top: 4px solid var(--primary-color);
+    }
+    
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--hover-shadow);
+    }
+    
+    .feature-icon {
+      font-size: 2.5rem;
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+    }
+    
+    .feature-card h4 {
+      font-size: 1.3rem;
+      margin-bottom: 0.8rem;
+      color: var(--primary-dark);
+    }
+    
+    ul, ol {
+      padding-left: 1.8rem;
+      margin: 1.2rem 0;
+    }
+    
+    li {
+      margin-bottom: 0.7rem;
+      position: relative;
+    }
+    
+    ul li::before {
+      content: "•";
+      color: var(--primary-color);
+      font-weight: bold;
+      display: inline-block;
+      width: 1em;
+      margin-left: -1em;
+    }
+    
+    .museum-info {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.8rem;
+    }
+    
+    .exhibition-card {
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+      border-radius: 12px;
+      padding: 1.8rem;
+      transition: var(--transition);
+      border-left: 4px solid var(--primary-color);
+    }
+    
+    .exhibition-card:hover {
+      transform: translateX(5px);
+      box-shadow: var(--card-shadow);
+    }
+    
+    .contact-info {
+      background: var(--gradient);
+      color: white;
+      padding: 2rem;
+      border-radius: 12px;
+      margin-top: 2rem;
+      box-shadow: var(--card-shadow);
+    }
+    
+    .contact-info h3 {
+      color: white;
+      margin-top: 0;
+    }
+    
+    .contact-info i {
+      margin-right: 10px;
+      width: 20px;
+      text-align: center;
+    }
+    
+    .incident-steps {
+      counter-reset: step-counter;
+      margin: 2rem 0;
+    }
+    
+    .incident-steps li {
+      list-style: none;
+      position: relative;
+      padding: 1.5rem 1rem 1.5rem 4.5rem;
+      margin-bottom: 1.5rem;
+      background: #f8f9fa;
+      border-radius: 10px;
+      border-left: 4px solid var(--primary-color);
+    }
+    
+    .incident-steps li::before {
+      counter-increment: step-counter;
+      content: counter(step-counter);
+      position: absolute;
+      left: 1.5rem;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 2.5rem;
+      height: 2.5rem;
+      background: var(--gradient);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 1.2rem;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .threats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+    
+    .threat-item {
+      background: white;
+      border-radius: 10px;
+      padding: 1.5rem;
+      box-shadow: var(--card-shadow);
+      transition: var(--transition);
+      border-top: 4px solid var(--primary-color);
+    }
+    
+    .threat-item:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--hover-shadow);
+    }
+    
+    .threat-icon {
+      font-size: 2rem;
+      color: var(--primary-color);
+      margin-bottom: 1rem;
     }
 
     footer {
-      background-color: #7b0086;
-      color: white;
+      background: var(--gradient);
+      color: var(--text-light);
       text-align: center;
-      padding: 1em;
+      padding: 1.5em;
       position: fixed;
       bottom: 0;
       width: 100%;
+      box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.1);
+      z-index: 10;
     }
-
-    /* Стили для скрытия/показа страниц */
-    .page {
-      display: none;
+    
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
-    .page.active {
-      display: block;
+    
+    .social-links {
+      display: flex;
+      gap: 15px;
+    }
+    
+    .social-links a {
+      color: white;
+      font-size: 1.2rem;
+      transition: var(--transition);
+    }
+    
+    .social-links a:hover {
+      color: var(--accent-color);
+      transform: translateY(-3px);
+    }
+    
+    @media (max-width: 768px) {
+      .nav-container {
+        flex-direction: column;
+        gap: 5px;
+      }
+      
+      h1 {
+        font-size: 2rem;
+      }
+      
+      main {
+        padding: 1.5em 1em;
+      }
+      
+      .footer-content {
+        flex-direction: column;
+        gap: 15px;
+      }
+      
+      .welcome-section {
+        padding: 2rem 1rem;
+      }
     }
   </style>
 </head>
@@ -64,88 +473,198 @@
   <!-- Главная навигация -->
   <header>
     <h1 id="page-title">Добро пожаловать в Московский Политех</h1>
+    <p class="header-subtitle" id="page-subtitle">Образование, наука и инновации</p>
   </header>
+  
   <nav id="main-nav">
-    <a href="#" onclick="showPage('home')">Главная</a>
-    <a href="#" onclick="showPage('museum')">О музее</a>
-    <a href="#" onclick="showPage('incident-plan')">План реагирования</a>
+    <div class="nav-container">
+      <a href="#" onclick="showPage('home')" class="active">
+        <i class="fas fa-home"></i> Главная
+      </a>
+      <a href="#" onclick="showPage('museum')">
+        <i class="fas fa-university"></i> О музее
+      </a>
+      <a href="#" onclick="showPage('incident-plan')">
+        <i class="fas fa-shield-alt"></i> План реагирования
+      </a>
+    </div>
   </nav>
 
   <!-- Страницы -->
   <main>
     <!-- Главная страница -->
     <div id="home" class="page active">
-      <p>На этом сайте вы найдете информацию о музее Московского Политеха и план реагирования на инциденты в корпоративной сети.</p>
+      <div class="welcome-section card">
+        <div class="welcome-icon">
+          <i class="fas fa-graduation-cap"></i>
+        </div>
+        <h2>Добро пожаловать в Московский Политех</h2>
+        <p class="welcome-text">На этом сайте вы найдете информацию о музее Московского Политеха и план реагирования на инциденты в корпоративной сети. Мы рады приветствовать вас на нашем образовательном портале.</p>
+      </div>
+      
+      <div class="card">
+        <h3><i class="fas fa-rocket"></i> Быстрый доступ</h3>
+        <div class="features-grid">
+          <div class="feature-card" onclick="showPage('museum')">
+            <div class="feature-icon">
+              <i class="fas fa-university"></i>
+            </div>
+            <h4>Музей</h4>
+            <p>Узнайте о истории и экспозициях нашего музея</p>
+          </div>
+          <div class="feature-card" onclick="showPage('incident-plan')">
+            <div class="feature-icon">
+              <i class="fas fa-shield-alt"></i>
+            </div>
+            <h4>Безопасность</h4>
+            <p>План реагирования на инциденты информационной безопасности</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-book-open"></i>
+            </div>
+            <h4>Образование</h4>
+            <p>Информация об образовательных программах университета</p>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- Страница музея -->
     <div id="museum" class="page">
-      <h2>О музее</h2>
-      <p>Музей Московского Политеха — это центр исторической и научной памяти университета. Здесь представлены экспозиции, посвящённые развитию инженерного образования, научным достижениям студентов и преподавателей.</p>
-      <h3>Экспозиции</h3>
-      <ul>
-        <li>История университета</li>
-        <li>Развитие технологий</li>
-        <li>Инновации студентов</li>
-      </ul>
-      <h3>Контакты</h3>
-      <p>Адрес: Москва, Большая Семёновская улица, д. 38</p>
-      <p>Email: museum@mstuca.ru</p>
+      <div class="card">
+        <h2><i class="fas fa-university"></i> О музее</h2>
+        <p>Музей Московского Политеха — это центр исторической и научной памяти университета. Здесь представлены экспозиции, посвящённые развитию инженерного образования, научным достижениям студентов и преподавателей.</p>
+        
+        <h3><i class="fas fa-palette"></i> Экспозиции</h3>
+        <div class="museum-info">
+          <div class="exhibition-card">
+            <h4>История университета</h4>
+            <p>Узнайте о богатой истории нашего учебного заведения, начиная с его основания до сегодняшних дней.</p>
+          </div>
+          
+          <div class="exhibition-card">
+            <h4>Развитие технологий</h4>
+            <p>Исследуйте эволюцию технологий через экспонаты, демонстрирующие ключевые изобретения и открытия.</p>
+          </div>
+          
+          <div class="exhibition-card">
+            <h4>Инновации студентов</h4>
+            <p>Познакомьтесь с проектами и разработками наших талантливых студентов, которые меняют будущее.</p>
+          </div>
+        </div>
+        
+        <div class="contact-info">
+          <h3><i class="fas fa-address-card"></i> Контакты</h3>
+          <p><i class="fas fa-map-marker-alt"></i> <strong>Адрес:</strong> Москва, Большая Семёновская улица, д. 38</p>
+          <p><i class="fas fa-envelope"></i> <strong>Email:</strong> museum@mstuca.ru</p>
+          <p><i class="fas fa-phone"></i> <strong>Телефон:</strong> +7 (495) 223-05-23</p>
+          <p><i class="fas fa-clock"></i> <strong>Часы работы:</strong> Пн-Пт: 9:00-18:00</p>
+        </div>
+      </div>
     </div>
 
     <!-- Страница плана реагирования -->
     <div id="incident-plan" class="page">
-      <h2>Введение</h2>
-      <p>План реагирования на инциденты в корпоративной сети необходим для обеспечения информационной безопасности и минимизации последствий атак.</p>
-      <h2>Этапы реагирования</h2>
-      <ol>
-        <li>Обнаружение инцидента</li>
-        <li>Анализ и классификация</li>
-        <li>Изоляция и устранение угрозы</li>
-        <li>Восстановление работы систем</li>
-        <li>Отчетность и улучшения</li>
-      </ol>
-      <h2>Типовые угрозы</h2>
-      <ul>
-        <li>Фишинг</li>
-        <li>Вредоносное ПО</li>
-        <li>Несанкционированный доступ</li>
-      </ul>
-      <h2>Рекомендации</h2>
-      <p>Регулярно обновляйте ПО, обучайте сотрудников и используйте антивирусные решения.</p>
+      <div class="card">
+        <h2><i class="fas fa-shield-alt"></i> План реагирования на инциденты безопасности</h2>
+        <p>План реагирования на инциденты в корпоративной сети необходим для обеспечения информационной безопасности и минимизации последствий атак.</p>
+        
+        <h3><i class="fas fa-list-ol"></i> Этапы реагирования</h3>
+        <ol class="incident-steps">
+          <li><strong>Обнаружение инцидента</strong> - Мониторинг систем и выявление подозрительной активности.</li>
+          <li><strong>Анализ и классификация</strong> - Определение типа и серьезности инцидента.</li>
+          <li><strong>Изоляция и устранение угрозы</strong> - Предотвращение распространения атаки и удаление вредоносных элементов.</li>
+          <li><strong>Восстановление работы систем</strong> - Возврат систем к нормальному функционированию.</li>
+          <li><strong>Отчетность и улучшения</strong> - Документирование инцидента и внесение изменений для предотвращения повторения.</li>
+        </ol>
+        
+        <h3><i class="fas fa-exclamation-triangle"></i> Типовые угрозы</h3>
+        <div class="threats-grid">
+          <div class="threat-item">
+            <div class="threat-icon">
+              <i class="fas fa-fish"></i>
+            </div>
+            <h4>Фишинг</h4>
+            <p>Мошеннические попытки получить конфиденциальную информацию</p>
+          </div>
+          <div class="threat-item">
+            <div class="threat-icon">
+              <i class="fas fa-bug"></i>
+            </div>
+            <h4>Вредоносное ПО</h4>
+            <p>Вирусы, трояны, программы-вымогатели и другое вредоносное программное обеспечение</p>
+          </div>
+          <div class="threat-item">
+            <div class="threat-icon">
+              <i class="fas fa-user-secret"></i>
+            </div>
+            <h4>Несанкционированный доступ</h4>
+            <p>Попытки несанкционированного доступа к системам и данным</p>
+          </div>
+        </div>
+        
+        <h3><i class="fas fa-lightbulb"></i> Рекомендации по безопасности</h3>
+        <div class="card">
+          <ul>
+            <li>Регулярно обновляйте программное обеспечение и операционные системы</li>
+            <li>Проводите обучение сотрудников по вопросам кибербезопасности</li>
+            <li>Используйте многофакторную аутентификацию для критически важных систем</li>
+            <li>Регулярно создавайте резервные копии важных данных</li>
+            <li>Внедряйте и поддерживайте антивирусные решения и брандмауэры</li>
+          </ul>
+        </div>
+      </div>
     </div>
   </main>
 
   <footer>
-    <span id="footer-text">&copy; 2025 Московский Политех</span>
+    <div class="footer-content">
+      <span id="footer-text">&copy; 2025 Московский Политех</span>
+      <div class="social-links">
+        <a href="#"><i class="fab fa-vk"></i></a>
+        <a href="#"><i class="fab fa-telegram"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
   </footer>
 
   <script>
-    // Функция для переключения между страницами
     function showPage(pageId) {
-      // Скрыть все страницы
       document.querySelectorAll('.page').forEach(page => {
         page.classList.remove('active');
       });
       
-      // Показать выбранную страницу
+      document.querySelectorAll('nav a').forEach(link => {
+        link.classList.remove('active');
+      });
+      event.target.classList.add('active');
+      
       document.getElementById(pageId).classList.add('active');
       
-      // Обновить заголовок страницы
       const titles = {
         'home': 'Добро пожаловать в Московский Политех',
         'museum': 'Музей Московского Политеха',
         'incident-plan': 'План реагирования на инциденты безопасности'
       };
-      document.getElementById('page-title').textContent = titles[pageId];
       
-      // Обновить текст в футере
+      const subtitles = {
+        'home': 'Образование, наука и инновации',
+        'museum': 'История и достижения университета',
+        'incident-plan': 'Защита корпоративной сети'
+      };
+      
+      document.getElementById('page-title').textContent = titles[pageId];
+      document.getElementById('page-subtitle').textContent = subtitles[pageId];
+      
       const footers = {
         'home': '&copy; 2025 Московский Политех',
         'museum': '&copy; 2025 Музей Московского Политеха',
-        'incident-plan': '&copy; 2025Безопасность корпоративной сети'
+        'incident-plan': '&copy; 2025 Безопасность корпоративной сети'
       };
       document.getElementById('footer-text').innerHTML = footers[pageId] || footers['home'];
+      
+      window.scrollTo(0, 0);
     }
   </script>
 </body>
